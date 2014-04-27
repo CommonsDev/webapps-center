@@ -12,7 +12,7 @@ angular.element(document).on('ready page:load', ->
         # Tastypie
         .config((RestangularProvider) ->
                 RestangularProvider.setBaseUrl(config.rest_uri)
-                RestangularProvider.setDefaultHeaders({"Authorization": "ApiKey pipo:46fbf0f29a849563ebd36176e1352169fd486787"});
+                # RestangularProvider.setDefaultHeaders({"Authorization": "ApiKey pipo:46fbf0f29a849563ebd36176e1352169fd486787"});
                 # Tastypie patch
                 RestangularProvider.setResponseExtractor((response, operation, what, url) ->
                         newResponse = null;
@@ -41,9 +41,10 @@ angular.element(document).on('ready page:load', ->
                 )
                 .state('collaborators',
                         url: '/collaborators'
-                        templateUrl: 'views/collaborators.html'
-                        controller: 'FileDetailCtrl'
-                )
+                        views:
+                                rightcol:
+                                        templateUrl: 'views/collaborators.html'
+                        )
         ])
 
         # Google auth config
