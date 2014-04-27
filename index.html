@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
 <!--    <link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,700' rel='stylesheet' type='text/css'> -->
+    <link href='styles/css/login.css' rel='stylesheet' type='text/css'>
     <link href='styles/css/screen.css' rel='stylesheet' type='text/css'>
     <!-- vendor includes -->        
     <!--[if lt IE 9]>
@@ -24,11 +25,11 @@
           <form name="loginForm">
             <p>
               <label for="login-field">Email</label>
-              <input id="login-field" type="text" ng-model="username" placeholder="Votre nom d'utilisateur..." required>
+              <input id="login-field" type="text" ng-model="authVars.username" placeholder="Votre nom d'utilisateur..." required>
             </p>
             <p>
               <label for="pass-field">Password</label>
-              <input id="pass-field" type="password" ng-model="password" placeholder="Votre mot de passe..." required>
+              <input id="pass-field" type="password" ng-model="authVars.password" placeholder="Votre mot de passe..." required>
             </p>
             <button ng-click="submit()" ng-disabled="form.$invalid" class="submit">Login</button>
             <a class="forgotten" href="#">Mot de passe oublié ?</a>
@@ -50,10 +51,11 @@
       <div class="container">
         <h1>Logithèque Unisson</h1>
 
-	<div ng-switch="loginService.isAuthenticated">
-          <a ng-switch-when="true" class="user" href="#">
+	<div ng-switch="authVars.isAuthenticated">
+          <a ng-switch-when="true" class="user">
             <img src="img/_TEMP/avatar.jpg" alt="user" />
-            <span>Guillerme Falighi</span>
+            <span>{{ authVars.username }}</span>
+	    <span>| (<button ng-click="loginService.logout()">déconnexion</button>)</span>
           </a>
 	  <a ng-switch-default class="user" ng-click="loginService.forceLogin()">
 	    <span>Se connecter</span>
@@ -69,7 +71,7 @@
         <nav>
           <ul>
             <li ng-class="{ active: $state.includes('apps') }" class="appli"><a ui-sref="apps">Applications</a></li>
-            <li ng-class="{ active: $state.includes('collaborators') }" class="members"><a ui-sref="collaborators">Collaborateurs</a></li>
+            <li ng-show="authVars.isAuthenticated" ng-class="{ active: $state.includes('collaborators') }" class="members"><a ui-sref="collaborators">Collaborateurs</a></li>
           </ul>
         </nav>
       </div>
