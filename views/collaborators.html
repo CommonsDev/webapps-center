@@ -1,28 +1,32 @@
 <div ng-controller="GroupManagerCtrl">
   <h1>Collaborateurs</h1>
 
-  <table ng-repeat="group in groups">
-    <tr>
-      <td>Nom d'utilisateur</td>
-      <td>Prénom</td>
-      <td>Nom</td>
-      <td>Action</td>
-    </tr>
-    <!-- group members -->
-    <tr ng-repeat="user in group.users">
-      <td>{{ user.username }}</td>
-      <td>{{ user.profile.first_name }}</td>
-      <td>{{ user.profile.last_name }}</td>
-      <td><a href="#">Enlever</a></td>
-    </tr>
-
-    <tr>
-      <form>
-	<td>Ajouter un collaborateur :</td>
-	<td><input type="text" placeholder="nom d'utilisateur..."/></td>
-	<td><input type="button" value="Ajouter" /></td>
-    </tr>
-  </table>
-
+  <div ng-repeat="group in groups">
+    <h1>{{ group.name }}</h1>
+    
+    <table>
+      <tr>
+	<td>Nom d'utilisateur</td>
+	<td>Prénom</td>
+	<td>Nom</td>
+	<td>Action</td>
+      </tr>
+      <!-- group members -->
+      <tr ng-repeat="user in group.users">
+	<td>{{ user.username }}</td>
+	<td>{{ user.profile.first_name }}</td>
+	<td>{{ user.profile.last_name }}</td>
+	<td><button ng-click="deleteUser(group.id, user.resource_uri)">Enlever</button></td>
+      </tr>
+      
+      <tr>
+	<form>
+	  <td>Ajouter un collaborateur :</td>
+	  <td><input type="text" ng-model="new_user.username" placeholder="nom d'utilisateur..."/></td>
+	  <td><input ng-click="addUser(group.id)" type="button" value="Ajouter" /></td>
+	</form>
+      </tr>
+    </table>
+  </div>
 </div>
 
