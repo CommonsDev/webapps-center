@@ -17,6 +17,36 @@ body {
 	@include box-sizing("border-box");
 }
 
+.workgroup {
+
+    margin-bottom: 40px;
+}
+
+strong {
+    font-weight: bold;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.table tr th {
+    font-weight: 600;
+}
+
+
 header {
 	height:45px;
 	background:#161719;
@@ -81,7 +111,7 @@ header {
 		width:100%;
 
 		img {
-			width:80%;
+			width: 100%;
 		}
 	}
 
@@ -130,7 +160,7 @@ header {
 #col-right {
 	width:80%;
 	float:left;
-	padding:0 0 12px;
+	padding:0 0 12px 15px;
 
 	section {
 		@include border-radius(5px);

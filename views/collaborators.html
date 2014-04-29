@@ -1,32 +1,39 @@
 <div ng-controller="GroupManagerCtrl">
-  <h1>Collaborateurs</h1>
+  <h2>Collaborateurs</h2>
 
-  <div ng-repeat="group in groups">
-    <h1>{{ group.name }}</h1>
+  <div class="workgroup" ng-repeat="group in groups">
+    <h3>Groupe de travail collaboratif "<strong>{{ group.name }}</strong>"</h3>
     
-    <table>
+    <table class="table table-striped">
       <tr>
-	<td>Nom d'utilisateur</td>
-	<td>Prénom</td>
-	<td>Nom</td>
-	<td>Action</td>
+	<th>Nom d'utilisateur</th>
+	<th>Prénom</th>
+	<th>Nom</th>
+	<th>Actions</th>
       </tr>
       <!-- group members -->
       <tr ng-repeat="user in group.users">
-	<td>{{ user.username }}</td>
+	<td><strong>{{ user.username }}</strong></td>
 	<td>{{ user.profile.first_name }}</td>
 	<td>{{ user.profile.last_name }}</td>
-	<td><button ng-click="deleteUser(group.id, user.resource_uri)">Enlever</button></td>
-      </tr>
-      
-      <tr>
-	<form>
-	  <td>Ajouter un collaborateur :</td>
-	  <td><input type="text" ng-model="new_user.username" placeholder="nom d'utilisateur..."/></td>
-	  <td><input ng-click="addUser(group.id)" type="button" value="Ajouter" /></td>
-	</form>
+	<td>
+	  <button type="button" class="btn btn-xs btn-info" ng-click="">Accéder à sa page web</button>
+	  <button type="button" class="btn btn-xs btn-danger" ng-click="deleteUser(group.id, user.resource_uri)">Enlever du groupe</button>
+	</td>
       </tr>
     </table>
+
+    <form role="form" class="form-inline">
+      <p>
+	Ajouter un collaborateur dans {{ group.name }} :
+	<input class="form-control" type="text" ng-model="new_user.username" placeholder="nom d'utilisateur..."/>
+	<button type="button" class="btn btn-primary" ng-click="addUser(group.id)">Ajouter au groupe</button>
+      </p>
+      <p class="text-warning">
+	<em>Ajouter un collaborateur signifie qu'il pourra accéder à l'ensemble de vos données.</em>
+      </p>
+    </form>
   </div>
+
 </div>
 

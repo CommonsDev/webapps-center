@@ -63,6 +63,9 @@ angular.element(document).on('ready page:load', ->
         )
 
         .run(['$rootScope', '$state', '$stateParams', 'loginService', ($rootScope, $state, $stateParams, loginService) ->
+
+                $rootScope.homeStateName = 'apps'
+
                 $rootScope.config = config
                 $rootScope.$state = $state
                 $rootScope.$stateParams = $stateParams
