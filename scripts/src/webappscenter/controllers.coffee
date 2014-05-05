@@ -1,13 +1,4 @@
-module = angular.module('webappscenter.controllers', ['restangular'])
-
-module.factory('Groups', (Restangular) ->
-        return Restangular.service('account/group')
-)
-
-module.factory('Users', (Restangular) ->
-        return Restangular.service('account/user')
-)
-
+module = angular.module('webappscenter.controllers', ['restangular', 'angular-unisson-auth'])
 
 class GroupManagerCtrl
         constructor: (@$scope, @Groups, @Users) ->
