@@ -1,5 +1,21 @@
 module = angular.module('webappscenter.controllers', ['restangular', 'angular-unisson-auth'])
 
+module.controller("UserManagerCtrl", ($scope, Users) =>
+        $scope.created = false
+
+        $scope.new_user =
+                username: ""
+                password: ""
+
+        $scope.createUser = ->
+                Users.post($scope.new_user).then(->
+                        $scope.new_user.username = ""
+                        $scope.new_user.password = ""
+                        $scope.created = true
+                )
+)
+
+
 class GroupManagerCtrl
         constructor: (@$scope, @Groups, @Users) ->
                 @$scope.groups = @Groups.getList().$object
